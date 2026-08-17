@@ -14,8 +14,8 @@ Chi ghi durable memory sau khi user co consent; dung `privacy_guard`, minimize P
 
 ## 4. Benchmark analysis
 
-- Layer yeu nhat: dien theo layer co hit rate thap nhat trong `reports/benchmark.md`.
-- Case nhieu token nhat: dien case co `retrieved_tokens` lon nhat trong `reports/benchmark.json`.
+- Layer yeu nhat trong lan chay nay: long-term, episodic va semantic cung 0% vi Zep tra HTTP 401; E01/E10 short-term van PASS.
+- Case nhieu token nhat: E10 voi 195 retrieved tokens; student benchmark dat 2/11 (18.2%), trong khi no-memory cung 2/11 do cung chi pass short-term.
 - E07 can ket hop long-term (Python/preference cua Minh) va semantic (Idempotency-Key/payment policy).
 - Token reduction chi co y nghia khi evidence hit rate van cao; no-memory co the reduction rat lon vi tra ve rong, nhung sai vi khong co evidence.
 
@@ -25,4 +25,4 @@ E08 phai giu scope BLUEBIRD-42 va uu tien TypeScript/NestJS, khong ghi de prefer
 
 ## 6. Artefacts
 
-Sau khi chay benchmark, cap nhat `reports/benchmark.*`, `reports/benchmark_no_memory.*`, `reports/comparison.md` va them 4 screenshot: `long_term.png`, `episodic.png`, `semantic.png`, `privacy.png`.
+Da co `reports/benchmark.*`, `reports/benchmark_no_memory.*` va `reports/comparison.md`. Student run van bi gioi han o 2/11 do Zep key bi tu choi (HTTP 401); can cap nhat key va seed lai truoc khi ket luan retrieval. Con thieu 4 screenshot: `long_term.png`, `episodic.png`, `semantic.png`, `privacy.png`.
