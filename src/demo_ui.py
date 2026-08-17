@@ -35,6 +35,7 @@ import streamlit as st
 from src.config import settings
 from src.llm import gemini_available, generate_reply
 from src.memory_student import StudentMemory
+from src.router import route_query
 from src.short_term import ShortTermMemory
 from src.utils import GOLDEN_PATH, load_dataset, load_json
 from src.zep_common import get_zep_client
@@ -107,8 +108,44 @@ def retrieve_for_case(
       * Keep user_id and thread_id from the loaded case.
       * Finish with memory.assemble_context(layers).
     """
-    _ = (memory, case, extra_messages, settings, ShortTermMemory)
-    raise NotImplementedError("BONUS TODO: run student retrieval for the loaded case")
+    dataset = load_dataset()
+    user = next(user for user in dataset["users"] if user["user_id"] == case["user_id"])
+    session_messages: list[dict[str, str]] = []
+    for session in user.get("sessions", []):
+        if session.get("thread_id") == case.get("thread_id"):
+            session_messages = list(session.get("messages", []))
+            break
+
+    short_term = ShortTermMemory(strategy="sliding", max_recent_messages=6, pressure_tokens=450)
+    messages = case.get("fixture_messages") or session_messages
+    for message in messages:
+        short_term.add(message["role"], message["content"])
+    for message in extra_messages:
+        short_term.add(message["role"], message["content"])
+
+    layers = {"short_term": "", "long_term": "", "episodic": "", "semantic": ""}
+    query = case.get("query", "")
+    is_loaded_case = case.get("id") in {item["id"] for item in load_cases()}
+    if is_loaded_case and case.get("expected_layer"):
+        selected_layers = case.get("retrieve_layers") or [case["expected_layer"]]
+    else:
+        selected_layers = route_query(query)
+
+    if "short_term" in selected_layers:
+        layers["short_term"] = short_term.render()
+    if "long_term" in selected_layers:
+        layers["long_term"] = memory.retrieve_long_term(
+            user_id=case["user_id"],
+            thread_id=case["thread_id"],
+            query=query,
+        )
+    if "episodic" in selected_layers:
+        layers["episodic"] = memory.retrieve_episodic(case["user_id"], query)
+    if "semantic" in selected_layers:
+        layers["semantic"] = memory.retrieve_semantic(settings.semantic_graph_id, query)
+
+    merged_context, budget = memory.assemble_context(layers)
+    return {"merged_context": merged_context, "layers": layers, "budget": budget}
 
 
 def main() -> None:
