@@ -4,7 +4,7 @@ from typing import Any
 
 from .config import settings
 from .context_budget import ContextBudgetManager
-from .utils import cap_query
+from .utils import cap_query, join_nonempty
 from .zep_common import prime_eval_thread, render_graph_search
 
 
@@ -27,7 +27,18 @@ class StudentMemory:
         #        validity ranges (a low limit can miss deadline/open-loop facts).
         prime_eval_thread(self.client, user_id, thread_id, query)
         user_context = self.client.thread.get_user_context(thread_id=thread_id)
-        return getattr(user_context, "context", "") or ""
+        context_block = getattr(user_context, "context", "") or ""
+        try:
+            facts = self.client.graph.search(
+                user_id=user_id,
+                query=cap_query(query),
+                scope="edges",
+                limit=20,
+            )
+            fact_text = render_graph_search(facts)
+        except Exception:
+            fact_text = ""
+        return join_nonempty([context_block, fact_text], sep="\n\n")
 
     def retrieve_episodic(self, user_id: str, query: str) -> str:
         # LAB TODO 2/4
@@ -71,4 +82,4 @@ class StudentMemory:
     def assemble_context(self, layers: dict[str, str]) -> tuple[str, dict[str, dict[str, int]]]:
         # LAB TODO 4/4
         # Use ContextBudgetManager to enforce 10/4/3/3 budget and priority order.
-            return self.budget.assemble(layers)
+        return self.budget.assemble(layers)

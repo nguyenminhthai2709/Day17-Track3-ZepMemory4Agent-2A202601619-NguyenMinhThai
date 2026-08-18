@@ -3,33 +3,24 @@
 - Implementation: `student`
 - Kind: `practice`
 - Cases: **11**
-- Passed: **2/11**
-- Evidence hit rate: **18.2%**
-- Average retrieval latency: **392.9 ms**
-- Average token reduction vs full source context: **81.8%**
+- Passed: **11/11**
+- Evidence hit rate: **100.0%**
+- Average retrieval latency: **1027.7 ms**
+- Average token reduction vs full source context: **14.2%**
 
 | Case | Layer | Pass | Latency ms | Retrieved tokens | Token reduction | Missing / Error |
 | --- | --- | --- | ---: | ---: | ---: | --- |
 | E01 | short_term | PASS | 0.1 | 133 | 0.0% |  |
-| E06 | semantic | FAIL | 1188.9 | 0 | 100.0% | ApiError: headers: {'date': 'Mon, 17 Aug 2026 16:57:22 GMT', 'content-type': 'text/plain; charset=utf-8', 'content-length': '13', 'connection': 'keep-alive', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'strict-transport-security': 'max-age=2592000', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': 'a2ca37aa1c6fe2ff-HKG'}, status_code: 401, body: unauthorized
- |
-| E09 | long_term | FAIL | 866.0 | 0 | 100.0% | ApiError: headers: {'date': 'Mon, 17 Aug 2026 16:57:23 GMT', 'content-type': 'text/plain; charset=utf-8', 'content-length': '13', 'connection': 'keep-alive', 'content-security-policy-report-only': "script-src 'unsafe-inline' 'unsafe-eval'; report-uri https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=PZbll1hi2a91X38PPgPdQ1mMIEFUySvu51VTYOnourU-1786985843.1305618-1.0.1.1-Gkpu_hQD_1XcWrfCFWD_Com2YpsXeDa0Id4AnGlXSCUKSVYsruKhWnzxJOHeG1Fp3E4P4vuIsMsg9wrQ3PU7Td7I2.00ZHGBXt1SsL6MQhNQepMQSMVZYmkctvl09CinUSD.q37fp0aune9IdJHZwuc5nf84UhRe72ibu5IFSIg; report-to cf-csp-endpoint", 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'strict-transport-security': 'max-age=2592000', 'reporting-endpoints': 'cf-csp-endpoint="https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=PZbll1hi2a91X38PPgPdQ1mMIEFUySvu51VTYOnourU-1786985843.1305618-1.0.1.1-Gkpu_hQD_1XcWrfCFWD_Com2YpsXeDa0Id4AnGlXSCUKSVYsruKhWnzxJOHeG1Fp3E4P4vuIsMsg9wrQ3PU7Td7I2.00ZHGBXt1SsL6MQhNQepMQSMVZYmkctvl09CinUSD.q37fp0aune9IdJHZwuc5nf84UhRe72ibu5IFSIg"', 'cf-cache-status': 'DYNAMIC', 'report-to': '{"group":"cf-csp-endpoint","max_age":86400,"endpoints":[{"url":"https://csp-reporting.cloudflare.com/cdn-cgi/script_monitor/report?m=PZbll1hi2a91X38PPgPdQ1mMIEFUySvu51VTYOnourU-1786985843.1305618-1.0.1.1-Gkpu_hQD_1XcWrfCFWD_Com2YpsXeDa0Id4AnGlXSCUKSVYsruKhWnzxJOHeG1Fp3E4P4vuIsMsg9wrQ3PU7Td7I2.00ZHGBXt1SsL6MQhNQepMQSMVZYmkctvl09CinUSD.q37fp0aune9IdJHZwuc5nf84UhRe72ibu5IFSIg"}]}', 'server': 'cloudflare', 'cf-ray': 'a2ca37af8a1be2ff-HKG'}, status_code: 401, body: unauthorized
- |
+| E06 | semantic | PASS | 412.7 | 148 | 67.8% |  |
+| E09 | long_term | PASS | 2031.1 | 746 | 0.0% |  |
 | E10 | short_term | PASS | 0.3 | 195 | 0.0% |  |
-| E02 | long_term | FAIL | 454.4 | 0 | 100.0% | ApiError: headers: {'date': 'Mon, 17 Aug 2026 16:57:23 GMT', 'content-type': 'text/plain; charset=utf-8', 'content-length': '13', 'connection': 'keep-alive', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'strict-transport-security': 'max-age=2592000', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': 'a2ca37b268b6e2ff-HKG'}, status_code: 401, body: unauthorized
- |
-| E03 | long_term | FAIL | 358.1 | 0 | 100.0% | ApiError: headers: {'date': 'Mon, 17 Aug 2026 16:57:24 GMT', 'content-type': 'text/plain; charset=utf-8', 'content-length': '13', 'connection': 'keep-alive', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'strict-transport-security': 'max-age=2592000', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': 'a2ca37b4be49e2ff-HKG'}, status_code: 401, body: unauthorized
- |
-| E04 | episodic | FAIL | 183.4 | 0 | 100.0% | ApiError: headers: {'date': 'Mon, 17 Aug 2026 16:57:24 GMT', 'content-type': 'text/plain; charset=utf-8', 'content-length': '13', 'connection': 'keep-alive', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'strict-transport-security': 'max-age=2592000', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': 'a2ca37b5e966e2ff-HKG'}, status_code: 401, body: unauthorized
- |
-| E05 | episodic | FAIL | 187.5 | 0 | 100.0% | ApiError: headers: {'date': 'Mon, 17 Aug 2026 16:57:24 GMT', 'content-type': 'text/plain; charset=utf-8', 'content-length': '13', 'connection': 'keep-alive', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'strict-transport-security': 'max-age=2592000', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': 'a2ca37b71c66e2ff-HKG'}, status_code: 401, body: unauthorized
- |
-| E07 | mixed | FAIL | 357.1 | 0 | 100.0% | ApiError: headers: {'date': 'Mon, 17 Aug 2026 16:57:24 GMT', 'content-type': 'text/plain; charset=utf-8', 'content-length': '13', 'connection': 'keep-alive', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'strict-transport-security': 'max-age=2592000', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': 'a2ca37b969a4e2ff-HKG'}, status_code: 401, body: unauthorized
- |
-| E11 | semantic | FAIL | 359.4 | 0 | 100.0% | ApiError: headers: {'date': 'Mon, 17 Aug 2026 16:57:25 GMT', 'content-type': 'text/plain; charset=utf-8', 'content-length': '13', 'connection': 'keep-alive', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'strict-transport-security': 'max-age=2592000', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': 'a2ca37bbaeb1e2ff-HKG'}, status_code: 401, body: unauthorized
- |
-| E08 | long_term | FAIL | 366.5 | 0 | 100.0% | ApiError: headers: {'date': 'Mon, 17 Aug 2026 16:57:25 GMT', 'content-type': 'text/plain; charset=utf-8', 'content-length': '13', 'connection': 'keep-alive', 'vary': 'Origin', 'x-content-type-options': 'nosniff', 'strict-transport-security': 'max-age=2592000', 'cf-cache-status': 'DYNAMIC', 'server': 'cloudflare', 'cf-ray': 'a2ca37bdfb51e2ff-HKG'}, status_code: 401, body: unauthorized
- |
+| E02 | long_term | PASS | 1919.4 | 1330 | 0.0% |  |
+| E03 | long_term | PASS | 1534.2 | 1335 | 0.0% |  |
+| E04 | episodic | PASS | 346.7 | 284 | 0.0% |  |
+| E05 | episodic | PASS | 393.1 | 303 | 0.0% |  |
+| E07 | mixed | PASS | 2757.3 | 485 | 14.2% |  |
+| E11 | semantic | PASS | 248.4 | 146 | 74.2% |  |
+| E08 | long_term | PASS | 1661.5 | 1335 | 0.0% |  |
 
 ## Evidence excerpts
 
@@ -39,11 +30,11 @@
 
 ### E06 - semantic
 
-``
+`EPISODE: {"id":"kb-payment-retry","entity":"Payment API Retry Policy","summary":"For POST /payments, every retryable request MUST send the same Idempotency-Key. Retry only HTTP 429 or transient 5xx errors, use exponential-backoff, and stop after max-3-retries. Marker: PAYMENT-RULE-3.","source":"internal-api-guideline-v3","updated_at":"2026-08-10T00:00:00Z"} metadata= EPISODE: For POST /payments, every retryable request MUST send the same Idempotency-Key. Retry only HTTP 429 or transient 5xx errors, use exponential-backoff, and stop after max-3-retries. Marker: PAYMENT-RULE-3. metadata=`
 
 ### E09 - long_term
 
-``
+`<USER_SUMMARY> Lan's project is LOTUS-88, and they prioritize Java and Spring Boot for backend development.  Lan prefers Java and Spring Boot for backend development and avoids Python for this purpose. </USER_SUMMARY>  <EPISODES> Episodes are source message or document excerpts shown in selection order.   - Created At: 2026-08-01 11:00:20     Source: message     Content: Lab Assistant (assistant): Da hieu: LOTUS-88, Java + Spring Boot cho backend examples.   - Created At: 2026-08-01 11:00:00     Source: message     Content: [user] {   "user_id": "lan-lab17",   "first_name": "Lan",   "last_name": "Tran",   "user_alias": "Lan Tran" }: Toi la Lan. Du an cua toi la LOTUS-88. Toi uu tien Java va `
 
 ### E10 - short_term
 
@@ -51,28 +42,28 @@
 
 ### E02 - long_term
 
-``
+`<USER_SUMMARY> The user is working on the company project BLUEBIRD-42, which requires the backend to use TypeScript with NestJS. Their personal project, ORCHID-27, continues to use Python for demos.  The user prefers Python for personal demos like ORCHID-27, but for the company project BLUEBIRD-42, the backend must use TypeScript with NestJS. They prefer short code examples for explanations. The user is learning async/await and may confuse coroutines with Tasks, preferring timeline explanations for this topic.  When explaining async/await concepts, especially the distinction between coroutines and Tasks, the AI should use a timeline. The user prefers short code examples. </USER_SUMMARY>  <EP`
 
 ### E03 - long_term
 
-``
+`<USER_SUMMARY> The user is working on the company project BLUEBIRD-42, which requires the backend to use TypeScript with NestJS. Their personal project, ORCHID-27, continues to use Python for demos.  The user prefers Python for personal demos like ORCHID-27, but for the company project BLUEBIRD-42, the backend must use TypeScript with NestJS. They prefer short code examples for explanations. The user is learning async/await and may confuse coroutines with Tasks, preferring timeline explanations for this topic.  When explaining async/await concepts, especially the distinction between coroutines and Tasks, the AI should use a timeline. The user prefers short code examples. </USER_SUMMARY>  <EP`
 
 ### E04 - episodic
 
-``
+`EPISODE: Hay chon huong dan code retry payment phu hop voi preference ca nhan cua Minh. EPISODE: Ten du an ca nhan cua toi la ORCHID-27. Toi thich Python va khong thich Java. Khi giai thich code, hay dung vi du ngan. EPISODE: Toi dang hoc async/await va hay nham coroutine voi Task. Neu sau nay gap chu de nay, hay giai thich bang timeline. EPISODE: TODO: hoan thanh benchmark report truoc thu Sau luc 16:00. Day la open loop LAB-REPORT-1600. EPISODE: Backend cua BLUEBIRD-42 bat buoc dung stack gi? EPISODE: Voi demo ca nhan cua Minh, ngon ngu uu tien la gi? EPISODE: Hom nay toi debug async HTTP. Toi da thu tang timeout len 60s nhung van fail. EPISODE: Cach hieu qua la reuse aiohttp ClientSession`
 
 ### E05 - episodic
 
-``
+`EPISODE: Hay chon huong dan code retry payment phu hop voi preference ca nhan cua Minh. EPISODE: Ten du an ca nhan cua toi la ORCHID-27. Toi thich Python va khong thich Java. Khi giai thich code, hay dung vi du ngan. EPISODE: Toi dang hoc async/await va hay nham coroutine voi Task. Neu sau nay gap chu de nay, hay giai thich bang timeline. EPISODE: TODO: hoan thanh benchmark report truoc thu Sau luc 16:00. Day la open loop LAB-REPORT-1600. EPISODE: Backend cua BLUEBIRD-42 bat buoc dung stack gi? EPISODE: Voi demo ca nhan cua Minh, ngon ngu uu tien la gi? EPISODE: Hom nay toi debug async HTTP. Toi da thu tang timeout len 60s nhung van fail. EPISODE: Hay kiem tra connection pool, lifecycle cua `
 
 ### E07 - mixed
 
-``
+`<LONG_TERM> <USER_SUMMARY> The user is working on the company project BLUEBIRD-42, which requires the backend to use TypeScript with NestJS. Their personal project, ORCHID-27, continues to use Python for demos.  The user prefers Python for personal demos like ORCHID-27, but for the company project BLUEBIRD-42, the backend must use TypeScript with NestJS. They prefer short code examples for explanations. The user is learning async/await and may confuse coroutines with Tasks, preferring timeline explanations for this topic.  When explaining async/await concepts, especially the distinction between coroutines and Tasks, the AI should use a timeline. The user prefers short code examples. </USER_S`
 
 ### E11 - semantic
 
-``
+`EPISODE: {"id":"kb-async-http","entity":"Async HTTP Incident Playbook","summary":"When async HTTP calls time out, inspect connection pooling, downstream saturation and concurrency before increasing timeout. Reuse a long-lived client session where possible. Marker: CONN-POOL-FIRST.","source":"incident-playbook-2026","updated_at":"2026-08-11T00:00:00Z"} metadata= EPISODE: When async HTTP calls time out, inspect connection pooling, downstream saturation and concurrency before increasing timeout. Reuse a long-lived client session where possible. Marker: CONN-POOL-FIRST. metadata=`
 
 ### E08 - long_term
 
-``
+`<USER_SUMMARY> The user is working on the company project BLUEBIRD-42, which requires the backend to use TypeScript with NestJS. Their personal project, ORCHID-27, continues to use Python for demos.  The user prefers Python for personal demos like ORCHID-27, but for the company project BLUEBIRD-42, the backend must use TypeScript with NestJS. They prefer short code examples for explanations. The user is learning async/await and may confuse coroutines with Tasks, preferring timeline explanations for this topic.  When explaining async/await concepts, especially the distinction between coroutines and Tasks, the AI should use a timeline. The user prefers short code examples. </USER_SUMMARY>  <EP`
